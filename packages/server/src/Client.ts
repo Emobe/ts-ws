@@ -1,12 +1,12 @@
 import WebSocket from "ws";
-import { Message } from "./models/Message";
+import msgpack from "msgpack";
 export class Client {
-  public socket: WebSocket;
+  socket: WebSocket;
   constructor(socket: WebSocket) {
     this.socket = socket;
   }
 
-  send(message: Message) {
-    this.socket.send(JSON.stringify(message));
+  send(message: any) {
+    this.socket.send(msgpack.pack(message));
   }
 }

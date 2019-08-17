@@ -21,12 +21,15 @@
     "registry": "http://localhost:4873/"
   },
   "scripts": {
-    "build": "yarn run lint && tsc",
-    "test": "ts-node node_modules/tape-watch/bin/tape-watch src/**/*",
-    "watch": "tsc -w",
-    "lint": "tslint -p ./ --fix"
+    "prepublishOnly": "npm run build",
+    "build": "tsc",
+    "test": "tap --debug --no-ts --node-arg=--require=ts-node/register ./tests/**/*.ts",
+    "test:watch": "ts-node node_modules/tape-watch/bin/tape-watch tests/**/*.ts",
+    "lint": "tslint -p ./ --fix",
+    "publish:dev": "npm unpublish --force && npm publish"
   },
   "devDependencies": {
+    "@types/msgpack": "^0.0.30",
     "@types/nanoid": "^2.0.0",
     "@types/tape": "^4.2.33",
     "nodemon": "^1.19.1",
@@ -40,6 +43,7 @@
     "typescript": "^3.5.3"
   },
   "dependencies": {
-    "@emobe/ts-collections": "0.0.6"
+    "@emobe/ts-collections": "0.0.6",
+    "@ygoe/msgpack": "^1.0.2"
   }
 }

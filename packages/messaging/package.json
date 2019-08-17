@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "description": "> TODO: description",
   "author": "Anthony Shuker <anthony@emobe.uk￼>",
-  "homepage": "",
+  "homepage": "http://eyeyey",
   "license": "ISC",
-  "main": "lib/messaging.js",
+  "main": "lib/MessageHandler.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -17,14 +17,18 @@
     "registry": "http://localhost:4873/"
   },
   "scripts": {
-    "build": "yarn run lint && tsc",
-    "test": "ts-node node_modules/tape-watch/bin/tape-watch src/**/*",
-    "watch": "tsc -w",
-    "lint": "tslint -p ./ --fix"
+    "prepublishOnly": "npm run build",
+    "build": "tsc",
+    "test": "tap --debug --no-ts --node-arg=--require=ts-node/register ./tests/**/*.ts",
+    "test:watch": "ts-node node_modules/tape-watch/bin/tape-watch tests/**/*.ts",
+    "lint": "tslint -p ./ --fix",
+    "publish:dev": "npm unpublish --force && npm publish"
   },
   "devDependencies": {
+    "@types/msgpack": "^0.0.30",
     "@types/nanoid": "^2.0.0",
     "@types/tape": "^4.2.33",
+    "@types/ws": "^6.0.2",
     "nodemon": "^1.19.1",
     "prettier": "^1.18.2",
     "tap": "^14.6.1",
@@ -36,6 +40,9 @@
     "typescript": "^3.5.3"
   },
   "dependencies": {
-    "@emobe/ts-collections": "0.0.6"
+    "@emobe/ts-collections": "0.0.6",
+    "@ygoe/msgpack": "^1.0.2",
+    "msgpack": "^1.0.2",
+    "nanoid": "^2.0.3"
   }
 }
