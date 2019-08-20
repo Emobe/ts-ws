@@ -2,6 +2,20 @@
   "name": "root",
   "private": true,
   "devDependencies": {
-    "lerna": "^3.13.4"
+    "@types/msgpack": "0.0.30",
+    "@types/sinon": "^7.0.13",
+    "@types/tape": "^4.2.33",
+    "@types/ws": "^6.0.2",
+    "lerna": "^3.13.4",
+    "msgpack": "^1.0.2",
+    "sinon": "^7.4.1",
+    "tape": "^4.11.0",
+    "tape-watch": "^2.3.0",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3",
+    "ws": "^7.1.2"
+  },
+  "scripts": {
+    "test:watch": "ts-node node_modules/tape-watch/bin/tape-watch tests/**/*.ts"
   }
 }

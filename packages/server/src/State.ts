@@ -9,4 +9,8 @@ export class State<T> {
   get getState(): T {
     return this.state.value;
   }
+
+  public subscribe(callback: (value: T) => void) {
+    this.state.subscribe(callback);
+  }
 }

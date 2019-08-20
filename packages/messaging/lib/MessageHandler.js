@@ -17,6 +17,10 @@ class MessageHandler {
         const message = msgpack_1.default.unpack(data);
         this.actions.Items[message.action](message.data);
     }
+    send(socket, message) {
+        const data = msgpack_1.default.pack(message);
+        socket.send(data);
+    }
 }
 exports.default = MessageHandler;
 //# sourceMappingURL=MessageHandler.js.map

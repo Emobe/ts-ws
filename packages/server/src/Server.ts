@@ -1,12 +1,9 @@
 import WebSocket from "ws";
-import { ObservableDictionary } from "@emobe/ts-collections";
-import { Room } from "./Room";
 import { RoomManager } from "./RoomManager";
 import nanoid from "nanoid";
 import { ServerState } from "./ServerState";
 import MessageHandler from "@ts-ws/messaging";
 import { Client } from "./Client";
-//import { MessageHandler } from "../../messaging/src/MessageHandler";
 export class Server {
   private ws: WebSocket.Server;
   public roomManager = new RoomManager();
@@ -15,14 +12,15 @@ export class Server {
   constructor(port: number) {
     this.ws = new WebSocket.Server({ port });
     this.ws.on("connection", socket => this.connected(socket));
-    this.state.combine;
   }
 
   private connected(socket: WebSocket) {
     const id = nanoid();
     const client = new Client(socket);
     socket.on("message", message => this.messages.handleMessage(message, id));
-    this.roomManager.Rooms.lobby.add(id, client);
+    this.roomManager.join("lobby", client);
+    this.messages.send(socket, { action: "handshake", data: { id } });
+    //console.log(this.roomManager.rooms.get("lobby").clients.Items);
   }
 
   public close() {

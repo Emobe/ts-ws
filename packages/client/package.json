@@ -32,8 +32,11 @@
     "@types/msgpack": "^0.0.30",
     "@types/nanoid": "^2.0.0",
     "@types/tape": "^4.2.33",
+    "@types/ws": "^6.0.2",
+    "isomorphic-ws": "^4.0.1",
     "nodemon": "^1.19.1",
     "prettier": "^1.18.2",
+    "rxjs": "^6.5.2",
     "tap": "^14.6.1",
     "tape": "^4.11.0",
     "tape-watch": "^2.3.0",
@@ -43,7 +46,8 @@
     "typescript": "^3.5.3"
   },
   "dependencies": {
-    "@emobe/ts-collections": "0.0.6",
+    "@emobe/ts-collections": "^0.0.7",
+    "@ts-ws/messaging": "0.0.0",
     "@ygoe/msgpack": "^1.0.2"
   }
 }
