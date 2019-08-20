@@ -1,12 +1,10 @@
 import test from "tape";
+import WebSocket from "isomorphic-ws";
 import { RoomManager } from "../src/RoomManager";
 import { Lobby } from "../src/Lobby";
 import { Room } from "../src/Room";
-import WebSocket from "isomorphic-ws";
 import { Server } from "../src/Server";
-import msgpack from "msgpack";
 import { Client } from "../src/Client";
-import { skip } from "rxjs/operators";
 class CustomRoom extends Room {}
 
 let server: Server;
@@ -29,7 +27,7 @@ test("RoomManager.join(client, room) should join rooms properly", t => {
     roomManager.join("lobby", testClient);
     roomManager.createRoom("testing", CustomRoom);
 
-    let actual = roomManager.Rooms.get("lobby").Clients;
+    let actual: any = roomManager.Rooms.get("lobby").Clients.Items;
     let expected = { [testClient.ID]: testClient };
 
     t.deepEqual(actual, expected, "Should join lobby");
@@ -38,7 +36,7 @@ test("RoomManager.join(client, room) should join rooms properly", t => {
     expected = {};
     t.deepEqual(actual, expected, "Should leave lobby");
 
-    actual = roomManager.Rooms.get("testing").Clients;
+    actual = roomManager.Rooms.get("testing").Clients.Items;
     expected = { [testClient.ID]: testClient };
     t.deepEqual(actual, expected, "Should join testing room ");
 

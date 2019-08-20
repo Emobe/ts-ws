@@ -15,12 +15,11 @@ export class Server {
   }
 
   private connected(socket: WebSocket) {
-    const id = nanoid();
     const client = new Client(socket);
+    const id = client.ID;
     socket.on("message", message => this.messages.handleMessage(message, id));
     this.roomManager.join("lobby", client);
     this.messages.send(socket, { action: "handshake", data: { id } });
-    //console.log(this.roomManager.rooms.get("lobby").clients.Items);
   }
 
   public close() {

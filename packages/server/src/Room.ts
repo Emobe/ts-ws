@@ -22,6 +22,6 @@ export abstract class Room {
   }
 
   public get Clients() {
-    return this.clients.Items;
+    return this.clients;
   }
 }
