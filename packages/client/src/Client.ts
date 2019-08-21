@@ -1,7 +1,7 @@
 import WebSocket, { OpenEvent, ErrorEvent } from "isomorphic-ws";
 import msgpack from "msgpack";
 import MessageHandler from "@ts-ws/messaging";
-export class Client {
+export default class Client {
   public socket: WebSocket;
   public messaging = new MessageHandler();
   public connected: (event: OpenEvent) => void;

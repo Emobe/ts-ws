@@ -8,6 +8,7 @@ const msgpack_1 = __importDefault(require("msgpack"));
 class MessageHandler {
     constructor() {
         this.actions = new ts_collections_1.Dictionary();
+        this.respondTo = this.respondTo.bind(this);
     }
     respondTo(action, callback) {
         this.actions.add(action, callback);
